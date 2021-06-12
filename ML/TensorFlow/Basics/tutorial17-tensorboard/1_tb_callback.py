@@ -1,3 +1,4 @@
+#%%
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
@@ -10,20 +11,20 @@ import tensorflow_datasets as tfds
 
 from tensorflow import keras
 from tensorflow.keras import layers
-
+#%%
 # Make sure we don't get any GPU errors
 physical_devices = tf.config.list_physical_devices("GPU")
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
-
+#%%
 (ds_train, ds_test), ds_info = tfds.load(
-    "cifar10",
+    "cifar100",
     split=["train", "test"],
     shuffle_files=True,
     as_supervised=True,
     with_info=True,
+    data_dir='D:\\Data\\tensorflowvc',
 )
-
-
+#%%
 def normalize_img(image, label):
     """Normalizes images"""
     return tf.cast(image, tf.float32) / 255.0, label
