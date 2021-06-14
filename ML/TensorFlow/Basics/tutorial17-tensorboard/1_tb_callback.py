@@ -1,4 +1,4 @@
-#%%
+# %%
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
@@ -6,7 +6,6 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import io
 import tensorflow as tf
 import matplotlib.pyplot as plt
-import numpy as np
 import tensorflow_datasets as tfds
 
 from tensorflow import keras
@@ -15,14 +14,14 @@ from tensorflow.keras import layers
 # Make sure we don't get any GPU errors
 physical_devices = tf.config.list_physical_devices("GPU")
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
-#%%
+#%% Pull in data
 (ds_train, ds_test), ds_info = tfds.load(
-    "cifar100",
+    'super_glue', #'deep_weeds', # 'clevr', #'mnist', #'titanic', # "cifar100",
     split=["train", "test"],
     shuffle_files=True,
     as_supervised=True,
     with_info=True,
-    data_dir='D:\\Data\\tensorflowvc',
+    data_dir='D:\\Data\\tensorflowvc\\',
 )
 #%%
 def normalize_img(image, label):
